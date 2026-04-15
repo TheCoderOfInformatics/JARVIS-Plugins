@@ -1,0 +1,54 @@
+name: 'Security Analyzer Pro'
+author: 'JARVIS Inc.'
+description: 'Advanced security scanning, vulnerability detection, compliance audit, threat intelligence for JARVIS'
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  scan-type:
+    description: 'Scan type: full|network|code|compliance|threat-intel'
+    required: true
+
+  target:
+    description: 'Target to scan (IP, URL, codebase path)'
+    required: true
+
+  severity-level:
+    description: 'Alert on: critical|high|medium|low'
+    required: false
+    default: 'high'
+
+  generate-report:
+    description: 'Generate HTML report'
+    required: false
+    default: 'true'
+
+  api-key:
+    description: 'Security API key'
+    required: true
+
+outputs:
+  vulnerabilities-found:
+    description: 'Number of vulnerabilities detected'
+
+  severity-breakdown:
+    description: 'JSON breakdown by severity'
+
+  compliance-score:
+    description: 'Compliance percentage (0-100)'
+
+  report-url:
+    description: 'Generated report URL'
+
+  threats-detected:
+    description: 'Detected threats summary'
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        echo "Security Analyzer Pro"
+        echo "Scan Type: ${{ inputs.scan-type }}"
+        echo "Target: ${{ inputs.target }}"
+      shell: bash

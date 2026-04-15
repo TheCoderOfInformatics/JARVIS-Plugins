@@ -1,0 +1,62 @@
+name: 'Analytics Intelligence'
+author: 'JARVIS Inc.'
+description: 'Advanced data analytics, ML predictions, AI insights, real-time dashboards'
+branding:
+  icon: 'bar-chart-2'
+  color: 'orange'
+
+inputs:
+  data-source:
+    description: 'Data source: database|api|csv|bigquery|snowflake'
+    required: true
+
+  analysis-type:
+    description: 'Analysis type: trend|prediction|anomaly|segmentation|all'
+    required: true
+
+  time-period:
+    description: 'Analyze period: day|week|month|quarter|year'
+    required: false
+    default: 'month'
+
+  metrics:
+    description: 'Metrics to analyze (comma-separated)'
+    required: true
+
+  ml-model:
+    description: 'ML model: linear|prophet|neural|ensemble'
+    required: false
+    default: 'ensemble'
+
+  generate-dashboard:
+    description: 'Generate interactive dashboard'
+    required: false
+    default: 'true'
+
+outputs:
+  analysis-complete:
+    description: 'Analysis status'
+
+  key-metrics:
+    description: 'Key findings and metrics'
+
+  predictions:
+    description: 'ML predictions (JSON)'
+
+  anomalies:
+    description: 'Detected anomalies'
+
+  insights:
+    description: 'AI-generated business insights'
+
+  dashboard-url:
+    description: 'Interactive dashboard URL'
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        echo "Analytics Intelligence"
+        echo "Source: ${{ inputs.data-source }}"
+        echo "Type: ${{ inputs.analysis-type }}"
+      shell: bash

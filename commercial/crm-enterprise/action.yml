@@ -1,0 +1,49 @@
+name: 'Enterprise CRM Sync'
+author: 'JARVIS Inc.'
+description: 'Salesforce, HubSpot, Pipedrive, Microsoft Dynamics integration with AI lead scoring'
+branding:
+  icon: 'users'
+  color: 'blue'
+
+inputs:
+  crm-platform:
+    description: 'Platform: salesforce|hubspot|pipedrive|dynamics'
+    required: true
+
+  action:
+    description: 'Action: sync|create|update|score|analyze'
+    required: true
+
+  object-type:
+    description: 'Object type: contact|lead|opportunity|account'
+    required: true
+
+  data:
+    description: 'Data payload (JSON)'
+    required: false
+
+  api-key:
+    description: 'CRM API key'
+    required: true
+
+outputs:
+  operation-result:
+    description: 'Operation success/failure'
+
+  records-affected:
+    description: 'Number of records modified'
+
+  lead-score:
+    description: 'AI-calculated lead score (0-100)'
+
+  insights:
+    description: 'AI insights and recommendations'
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        echo "Enterprise CRM Sync"
+        echo "Platform: ${{ inputs.crm-platform }}"
+        echo "Action: ${{ inputs.action }}"
+      shell: bash

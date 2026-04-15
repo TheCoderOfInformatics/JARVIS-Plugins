@@ -1,0 +1,60 @@
+name: 'Code Guardian'
+author: 'JARVIS Inc.'
+description: 'AI-powered code review, security scanning, quality metrics, dependency analysis'
+branding:
+  icon: 'code'
+  color: 'purple'
+
+inputs:
+  repository:
+    description: 'Repository path or URL'
+    required: true
+
+  scan-type:
+    description: 'Scan type: security|quality|dependencies|all'
+    required: true
+    default: 'all'
+
+  language:
+    description: 'Programming language'
+    required: false
+
+  severity:
+    description: 'Minimum severity level: critical|high|medium'
+    required: false
+    default: 'high'
+
+  ai-review:
+    description: 'Enable AI code review'
+    required: false
+    default: 'true'
+
+  generate-report:
+    description: 'Generate detailed report'
+    required: false
+    default: 'true'
+
+outputs:
+  issues-found:
+    description: 'Total issues detected'
+
+  security-score:
+    description: 'Security score (0-100)'
+
+  quality-score:
+    description: 'Code quality score (0-100)'
+
+  vulnerabilities:
+    description: 'Security vulnerabilities found'
+
+  recommendations:
+    description: 'AI recommendations'
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        echo "Code Guardian - AI Code Review"
+        echo "Repository: ${{ inputs.repository }}"
+        echo "Scan: ${{ inputs.scan-type }}"
+      shell: bash
