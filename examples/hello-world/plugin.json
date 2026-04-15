@@ -1,0 +1,35 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "author": "JARVIS Team",
+  "description": "Hello World Plugin - Ein einfaches Einsteiger-Plugin für JARVIS",
+  "category": "productivity",
+  "jarvis_min_version": "1.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/TheCoderOfInformatics/JARVIS-Plugins",
+  "price": 0,
+  "currency": "EUR",
+  "tags": ["example", "beginner", "starter"],
+  "tools": [
+    {
+      "name": "hello_world",
+      "description": "Grüße die Welt",
+      "params": {
+        "name": {
+          "type": "string",
+          "description": "Name zum Grüßen"
+        }
+      }
+    },
+    {
+      "name": "count_to_n",
+      "description": "Zähle von 1 bis N",
+      "params": {
+        "n": {
+          "type": "number",
+          "description": "Zähle bis zu dieser Zahl"
+        }
+      }
+    }
+  ]
+}
