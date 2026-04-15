@@ -1,97 +1,126 @@
-# Hello World Plugin für JARVIS
+# Hello World Action
 
-Ein einfaches Einsteiger-Plugin, das grundlegende Plugin-Funktionalität demonstriert.
+A simple greeting and counting GitHub Action - perfect for learning and testing workflows.
 
-## Installation
+## Features
 
-```bash
-cd examples/hello-world
-pip install -r requirements.txt
+- 👋 Customizable greeting messages
+- 🔢 Count to any number
+- 📤 Output messages for workflow use
+- 🎯 Works on Windows, macOS, and Linux
+
+## Usage
+
+### Basic Usage
+
+```yaml
+- name: Run Hello World
+  uses: TheCoderOfInformatics/JARVIS-Plugins/examples/hello-world@main
+  with:
+    name: Alice
+    count: 10
 ```
 
-## Verwendung
+### Using Outputs
 
-### Mit JARVIS laden
+```yaml
+- name: Run Hello World
+  id: hello
+  uses: TheCoderOfInformatics/JARVIS-Plugins/examples/hello-world@main
+  with:
+    name: 'GitHub Actions'
+    count: 5
 
-```bash
-python Main.py --load-plugin examples/hello-world
+- name: Print Results
+  run: |
+    echo "Greeting: ${{ steps.hello.outputs.greeting }}"
+    echo "Result: ${{ steps.hello.outputs.result }}"
 ```
 
-Dann JARVIS fragen:
+### Example Workflow
 
-> "Hey Jarvis, führe hello_world('Alice') aus"
-> "Zähle bis 10"
+```yaml
+name: Example Workflow
+on: push
 
-### Direktes Testen
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-```python
-import asyncio
-from main import HelloWorldPlugin
-
-async def test():
-    plugin = HelloWorldPlugin()
-    
-    # Test 1
-    result1 = await plugin.hello_world("Python")
-    print(result1)
-    
-    # Test 2
-    result2 = await plugin.count_to_n(5)
-    print(result2)
-
-asyncio.run(test())
+      - name: Greet the world
+        uses: TheCoderOfInformatics/JARVIS-Plugins/examples/hello-world@main
+        with:
+          name: Developer
+          count: 7
 ```
 
-Oder:
+## Inputs
 
-```bash
-python main.py
+### `name`
+
+**Required**: false  
+**Default**: `"World"`
+
+The name to greet in the message.
+
+### `count`
+
+**Required**: false  
+**Default**: `"5"`
+
+The number to count up to (1 to N).
+
+## Outputs
+
+### `greeting`
+
+The greeting message string.
+
+### `result`
+
+The count result message.
+
+## Examples
+
+### Example 1: Simple Greeting
+
+```yaml
+- uses: TheCoderOfInformatics/JARVIS-Plugins/examples/hello-world@main
 ```
 
-## Tools
+Output: `Hello, World! This is GitHub Actions. 👋`
 
-### `hello_world`
+### Example 2: Custom Name and Count
 
-Grüße die Welt
-
-**Parameter:**
-- `name` (string, optional): Name zum Grüßen (default: "World")
-
-**Beispiel:**
-```
-hello_world("Alice")
-→ "Hello, Alice! This is Hello World Plugin speaking. 👋"
+```yaml
+- uses: TheCoderOfInformatics/JARVIS-Plugins/examples/hello-world@main
+  with:
+    name: 'JARVIS'
+    count: 20
 ```
 
-### `count_to_n`
+### Example 3: Using Environment Variables
 
-Zähle von 1 bis N
-
-**Parameter:**
-- `n` (number, optional): Zähle bis zu dieser Zahl (default: 5, max: 100)
-
-**Beispiel:**
-```
-count_to_n(3)
-→ {
-    "count": [1, 2, 3],
-    "total": 3,
-    "sum": 6
-  }
+```yaml
+- uses: TheCoderOfInformatics/JARVIS-Plugins/examples/hello-world@main
+  with:
+    name: ${{ github.actor }}
+    count: 10
 ```
 
-## Tests ausführen
+## Support
 
-```bash
-pytest tests/ -v
-```
+For issues, questions, or suggestions:
+- 📝 [GitHub Issues](https://github.com/TheCoderOfInformatics/JARVIS-Plugins/issues)
+- 💬 [Discussions](https://github.com/TheCoderOfInformatics/JARVIS-Plugins/discussions)
 
-## Fehlerbehandlung
+## License
 
-Das Plugin validiert Input-Parameter:
-- `count_to_n` akzeptiert nur Werte zwischen 1-100
-- Andere ungültige Input wird mit `success: false` beantwortet
+MIT - see LICENSE file
 
-## Lizenz
+---
 
-MIT
+**Created with ❤️ by JARVIS Team**

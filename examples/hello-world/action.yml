@@ -1,0 +1,35 @@
+name: 'Hello World'
+author: 'JARVIS Team'
+description: 'A simple greeting action - perfect for learning GitHub Actions'
+branding:
+  icon: 'smile'
+  color: 'purple'
+
+inputs:
+  name:
+    description: 'Name to greet'
+    required: false
+    default: 'World'
+  count:
+    description: 'Number to count up to'
+    required: false
+    default: '5'
+
+outputs:
+  greeting:
+    description: 'The greeting message'
+  result:
+    description: 'The count result'
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        $greeting = "Hello, ${{ inputs.name }}! This is GitHub Actions. 👋"
+        echo "greeting=$greeting" >> $GITHUB_OUTPUT
+      shell: pwsh
+
+    - run: |
+        $count = 1..${{ inputs.count }} -join ", "
+        echo "result=Counted: $count" >> $GITHUB_OUTPUT
+      shell: pwsh

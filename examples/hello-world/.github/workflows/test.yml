@@ -1,0 +1,56 @@
+name: Test Hello World Action
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test Action
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test with default inputs
+        id: default
+        uses: ./
+        with:
+          name: 'World'
+          count: 5
+
+      - name: Print default results
+        run: |
+          echo "Greeting: ${{ steps.default.outputs.greeting }}"
+          echo "Result: ${{ steps.default.outputs.result }}"
+
+      - name: Test with custom inputs
+        id: custom
+        uses: ./
+        with:
+          name: 'GitHub Actions'
+          count: 10
+
+      - name: Print custom results
+        run: |
+          echo "Greeting: ${{ steps.custom.outputs.greeting }}"
+          echo "Result: ${{ steps.custom.outputs.result }}"
+
+      - name: Test with numbers
+        id: numbers
+        uses: ./
+        with:
+          name: 'Test123'
+          count: 20
+
+      - name: Verify outputs exist
+        run: |
+          [ -n "${{ steps.numbers.outputs.greeting }}" ] && echo "✓ Greeting output exists"
+          [ -n "${{ steps.numbers.outputs.result }}" ] && echo "✓ Result output exists"
+        shell: bash
