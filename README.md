@@ -1,8 +1,8 @@
-# JARVIS Plugin Marketplace
+# JARVIS Plugin Ökosystem
 
-Ein Plugin-Ökosystem für **JARVIS** — den autonomen KI-Assistenten für Windows.
+Ein Plugin-System für **JARVIS** — den autonomen KI-Assistenten für Windows.
 
-Erweitere JARVIS mit neuen Tools, Integrationen und Fähigkeiten. Verkaufe deine Plugins im Marketplace oder teile sie kostenlos mit der Community.
+Erweitere JARVIS mit neuen Tools, Integrationen und Fähigkeiten. Teile deine Plugins mit der Community!
 
 ## 🎯 Was sind JARVIS Plugins?
 
@@ -48,8 +48,6 @@ mein-plugin/
       }
     }
   ],
-  "price": 0,
-  "currency": "EUR",
   "tags": ["integration", "automation", "enterprise"]
 }
 ```
@@ -148,38 +146,6 @@ Dann PR hier im JARVIS-Plugins Repo erstellen.
 | **enterprise** | Business-Systeme | CRM, ERP, Datenbanken |
 | **ai** | KI & Modelle | Alternative LLMs, Embeddings |
 
-## 💰 Marketplace
-
-### Plugin kostenlos anbieten
-
-Setze `"price": 0` in `plugin.json`:
-
-```json
-{
-  "price": 0,
-  "currency": "EUR"
-}
-```
-
-### Plugin verkaufen
-
-1. Setze einen Preis:
-   ```json
-   {
-     "price": 9.99,
-     "currency": "EUR"
-   }
-   ```
-
-2. Lizenzschlüssel implementieren:
-   ```python
-   def validate_license(key):
-       # Validiere Lizenzschlüssel
-       return key.startswith("JARVIS-")
-   ```
-
-3. PR mit `[PAID]` Tag einreichen
-
 ## 🔌 JARVIS Kernel API
 
 Plugins haben Zugriff auf Kernel-Methoden:
@@ -232,7 +198,6 @@ python Main.py --load-plugin mein-plugin
 
 - [Plugin-Entwicklungshandbuch](./docs/PLUGIN_DEVELOPMENT.md)
 - [API-Referenz](./docs/API_REFERENCE.md)
-- [Lizenzierung & Verkauf](./docs/LICENSING.md)
 - [Best Practices](./docs/BEST_PRACTICES.md)
 - [Sicherheit](./docs/SECURITY.md)
 
@@ -255,7 +220,7 @@ Plugins beitragen:
 
 4. **Review** durch Community
 
-5. **Merge** und im Marketplace sichtbar
+5. **Merge** — Plugin wird in das Repository aufgenommen
 
 ## ✅ Checkliste vor PR
 
@@ -275,7 +240,6 @@ Plugins können auf Systemressourcen zugreifen. Richtlinien:
 1. **Keine permanenten Backdoors** — Plugin wird bei jedem Start neu geladen
 2. **Sandbox-Regeln respektieren** — Nicht in Systemdateien schreiben
 3. **Benutzer informieren** — Berechtigungen offenlegen
-4. **Lizenzschlüssel sicher** — Nicht in Source Code committen
 
 Verdächtige Plugins werden entfernt.
 
